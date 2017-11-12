@@ -1,0 +1,11 @@
+html {
+    font-family: 'Ubuntu', sans-serif;
+    height: 100%;
+    color: #E8BF6A;
+    background-color: #2B2B2B;
+}
+
+body {
+    font-size: 13px;
+    line-height: 20px;
+}
