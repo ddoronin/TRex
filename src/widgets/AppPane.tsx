@@ -50,7 +50,6 @@ class AppPane extends React.Component<IProps, IFragmentState> {
     render(): JSX.Element {
         return (
             <article>
-                <h1>Apps</h1>
                 {this.state.fragment}
             </article>
         );
