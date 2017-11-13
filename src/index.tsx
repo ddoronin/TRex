@@ -6,9 +6,9 @@ import Api from './Api';
 import {inject} from './inject';
 inject(Api);
 
-import Weather from "./widgets/Weather";
+import AppPane from "./widgets/AppPane";
 
 ReactDOM.render(
-    <Weather/>,
+    <AppPane/>,
     document.getElementById("app")
 );

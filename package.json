@@ -6,8 +6,8 @@
   "author": "Dmitry_Doronin <doronindm@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
-    "build": "./node_modules/.bin/webpack --progress --colors"
+    "debug": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
+    "start": "./node_modules/.bin/webpack --progress --colors"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
