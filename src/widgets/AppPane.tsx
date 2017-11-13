@@ -12,7 +12,7 @@ import Api from "../Api";
 interface IProps{}
 
 class AppPane extends React.Component<IProps, IFragmentState> {
-    private readonly appController: IAppController = Api.get('IAppController');
+    private readonly appController: IAppController = Api.get<IAppController>();
 
     constructor(props: IProps) {
         super(props);

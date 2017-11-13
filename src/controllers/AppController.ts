@@ -3,6 +3,11 @@ import {Observer} from "rxjs/Observer";
 import {App} from '../models/App';
 import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
+import {Injectable} from "../di/ServiceLocator";
+
+export class IAppController extends Injectable{
+    static guid: 'IAppController';
+}
 
 export interface IAppController{
     listApps():Observable<HttpBag<Array<App>>>
