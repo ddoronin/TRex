@@ -1,5 +1,4 @@
 # &lt;T>Rex
-Rex
 
 MVC project that is build around an idea of state incapsulated into UI widgets rather than having a shared global state like in Redux.
 

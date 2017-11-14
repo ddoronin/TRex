@@ -12,18 +12,14 @@ class Binder<T> {
     }
 }
 
-export abstract class Injectable {
-    static guid: String
-}
-
 export default class ServiceLocator {
     private locator: Map<String, any> = new Map();
 
-    bind<T extends Injectable>(): Binder<T> {
-        return new Binder(Injectable.guid, this.locator)
+    bind<T>(type: String): Binder<T> {
+        return new Binder(type, this.locator)
     }
 
-    get<T extends Injectable>(): T {
-        return this.locator.get(Injectable.guid)
+    get<T>(type: String): T {
+        return this.locator.get(type)
     }
 }

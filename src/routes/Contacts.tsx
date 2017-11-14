@@ -1,7 +1,13 @@
 import * as React from 'react';
+import ContactsWidget from "../widgets/Contacts/Widget";
 
 const Contacts = () => (
-    <div>Contacts</div>
+    <article>
+        <header>Contacts</header>
+        <section>
+            <ContactsWidget/>
+        </section>
+    </article>
 );
 
 export default Contacts;
