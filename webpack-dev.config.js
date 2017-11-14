@@ -90,7 +90,7 @@ module.exports = {
 
 		new TransferWebpackPlugin([
 			{from: 'www'},
-		], path.resolve(__dirname, 'src')),
+		], path.resolve(__dirname)),
 
 		new webpack.LoaderOptionsPlugin({
 			options: {
