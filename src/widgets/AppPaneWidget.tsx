@@ -4,9 +4,9 @@ import {App} from "../models/App";
 import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
 import {IFragmentState} from '../common/IFragmentState';
-import Loading from "./AppPaneComponents/Loading";
-import AppIconBag from "./AppPaneComponents/AppIconBag";
-import Failed from "./AppPaneComponents/Failed";
+import Loading from "./AppPane/Loading";
+import AppIconBag from "./AppPane/AppIconBag";
+import Failed from "./AppPane/Failed";
 import Api from "../Api";
 
 interface IProps{}

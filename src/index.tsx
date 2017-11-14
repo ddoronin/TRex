@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import '../styles/main.scss';
 
 // Inject dependencies
 import Api from './Api';

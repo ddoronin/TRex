@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ContactsWidget from "../widgets/Contacts/Widget";
+import ContactsWidget from "../widgets/ContactsWidget";
 
 const Contacts = () => (
     <article>

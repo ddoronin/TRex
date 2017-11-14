@@ -1,10 +1,10 @@
 import * as React from 'React';
-import Api from "../../Api";
-import {IContactsController} from "../../controllers/ContactsController";
-import {IFragmentState} from "../../common/IFragmentState";
-import {HttpBag} from "../../models/HttpBag";
-import {Contact} from "../../models/Contact";
-import {HttpStatus} from "../../models/HttpStatus";
+import Api from "../Api";
+import {IContactsController} from "../controllers/ContactsController";
+import {IFragmentState} from "../common/IFragmentState";
+import {HttpBag} from "../models/HttpBag";
+import {Contact} from "../models/Contact";
+import {HttpStatus} from "../models/HttpStatus";
 
 interface IProps{}
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {App} from "../../models/App";
-import AppIcon from "./AppIcon";
+import {AppIcon} from "./AppIcon";
 import {Link} from "react-router-dom";
 
 interface IProps{

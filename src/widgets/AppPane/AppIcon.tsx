@@ -5,7 +5,7 @@ interface IProps {
     app: App
 }
 
-const AppIcon = (props: IProps): JSX.Element => (
+export const AppIcon = (props: IProps): JSX.Element => (
     <article>
         <header>
             <h4 style={{textAlign: 'center', margin: 5}}>{props.app.name}</h4>
@@ -16,5 +16,3 @@ const AppIcon = (props: IProps): JSX.Element => (
         <footer/>
     </article>
 );
-
-export default AppIcon;

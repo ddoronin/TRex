@@ -9,11 +9,12 @@ import Mail from "./routes/Mail";
 import Contacts from "./routes/Contacts";
 import Photos from "./routes/Photos";
 import Reminder from "./routes/Reminder";
+import SearchWidget from "./widgets/SearchWidget";
 
 const App = () => (
 <Router>
     <div>
-        <h1><Link to="/">{'<T>Rex'}</Link></h1>
+        <h1><SearchWidget/></h1>
         <hr/>
         <Route exact path="/" component={Home}/>
         <Route path="/mail" component={Mail}/>
