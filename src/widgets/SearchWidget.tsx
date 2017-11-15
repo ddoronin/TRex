@@ -61,11 +61,13 @@ class SearchWidget extends React.Component<IProps, IState> {
     render(): JSX.Element {
         return (
             <article className="search-widget">
-                <section className="search">
+                <section className="search-box">
                     <SearchBox onFocus={this.handleFocus}
                                onSearch={this.handleSearch}/>
-                    {this.state.recentVisible && this.state.recentFragment}
                 </section>
+                {this.state.recentVisible && <section className="recent-box">
+                    {this.state.recentFragment}
+                </section>}
             </article>
         );
     }

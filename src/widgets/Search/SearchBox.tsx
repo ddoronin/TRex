@@ -8,8 +8,9 @@ interface IProps {
 export const SearchBox = (props: IProps) => {
     let $input: HTMLInputElement;
     return (
-        <div>
+        <div className="search-input">
             <input type="text"
+                   placeholder="Search"
                    onFocusCapture={() => props.onFocus(true)}
                    onBlurCapture={() => props.onFocus(false)}
                    ref={input => $input = input} onChange={() => {

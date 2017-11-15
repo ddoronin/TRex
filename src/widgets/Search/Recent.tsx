@@ -5,7 +5,7 @@ interface IProps{
 }
 
 export const Recent = (props:IProps) => (
-    <article>
+    <article className="recent">
         <header>Recent</header>
         <section>
             <ul>
