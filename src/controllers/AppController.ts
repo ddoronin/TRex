@@ -2,36 +2,36 @@ import {Observable} from 'rxjs/Observable';
 import {Observer} from "rxjs/Observer";
 import {App} from '../models/App';
 import {HttpBag} from "../models/HttpBag";
+import {HttpError} from "../models/HttpError";
 import {HttpStatus} from "../models/HttpStatus";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
-export interface IAppController{
-    listApps():Observable<HttpBag<Array<App>>>
+export type HttpArray<T> = HttpBag<Array<T>, HttpError>
+
+export interface IAppController {
+    listApps(): Observable<HttpArray<App>>
 }
 
 export class AppController implements IAppController {
+    private readonly apps$: Observable<HttpArray<App>> = BehaviorSubject.create();
+
     listApps() {
-        return Observable.create((observer: Observer<HttpBag<Array<App>>>) => {
+        const fetch$ = Observable.create((observer: Observer<HttpArray<App>>) => {
             observer.next({status: HttpStatus.Pending, data: null});
-            setTimeout(() => observer.next({
-                status: HttpStatus.Succeeded, data: [
-                    {
-                        name: 'Mail',
-                        image: 'https://www.icloud.com/system/cloudos/17GProject50/cloudos_foundation/17GProject50/en-us/source/resources/images/app_icons/mail_icon@2x.png'
-                    },
-                    {
-                        name: 'Contacts',
-                        image: 'https://www.icloud.com/system/cloudos/17GProject50/cloudos_foundation/17GProject50/en-us/source/resources/images/app_icons/contacts_icon@2x.png'
-                    },
-                    {
-                        name: 'Photos',
-                        image: 'https://www.icloud.com/system/cloudos/17GProject50/cloudos_foundation/17GProject50/en-us/source/resources/images/app_icons/photos_icon@2x.png'
-                    },
-                    {
-                        name: 'Reminder',
-                        image: 'https://www.icloud.com/system/cloudos/17GProject50/cloudos_foundation/17GProject50/en-us/source/resources/images/app_icons/reminders_icon@2x.png'
-                    }
-                ]
-            }), 1000);
+            fetch('/api/apps')
+                .then(res => res.json())
+                .then(apps => {
+                    observer.next({
+                        status: HttpStatus.Succeeded, data: apps
+                    });
+                })
+                .catch(error => {
+                    observer.next({
+                        status: HttpStatus.Failed, error
+                    });
+                })
         });
+        this.apps$.subscribe(fetch$);
+        return fetch$;
     }
 }

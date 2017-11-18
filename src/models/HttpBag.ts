@@ -1,6 +1,7 @@
 import {HttpStatus} from "./HttpStatus";
 
-export class HttpBag<T>{
+export interface HttpBag<T, E> {
     status: HttpStatus;
-    data: T;
+    data?: T;
+    error?: E;
 }

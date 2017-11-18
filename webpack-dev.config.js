@@ -100,7 +100,8 @@ module.exports = {
 	],
 	devServer: {
 		contentBase: 'src/www',
-		// relative directory for base of server
+		// relative directory for base of s
+		// erver
 
 		host: HOST_NAME,
 
@@ -109,7 +110,14 @@ module.exports = {
 		historyApiFallback: true,
 		// respond to 404s with index.html
 
-		hot: true
+		hot: true,
 		// enable HMR on the server
+
+		setup(app){
+			const apps = require('./mocks/apps');
+			app.get('/api/apps', (req, res) => {
+				res.send(apps);
+			});
+		}
 	}
 };

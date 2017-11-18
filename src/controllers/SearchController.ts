@@ -2,6 +2,7 @@ import {Observable} from "rxjs/Observable";
 import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
 import {Observer} from "rxjs/Observer";
+import {HttpError} from "../models/HttpError";
 
 export class Asset {
     name: String
@@ -9,13 +10,13 @@ export class Asset {
 }
 
 export interface ISearchController{
-    search(text: String):Observable<HttpBag<Array<Asset>>>
-    recent():Observable<HttpBag<Array<Asset>>>
+    search(text: String):Observable<HttpBag<Array<Asset>, HttpError>>
+    recent():Observable<HttpBag<Array<Asset>, HttpError>>
 }
 
 export class SearchController implements ISearchController {
     search(text: String) {
-        return Observable.create((observer: Observer<HttpBag<Array<Asset>>>) => {
+        return Observable.create((observer: Observer<HttpBag<Array<Asset>, HttpError>>) => {
             observer.next({status: HttpStatus.Pending, data: null});
             setTimeout(() => observer.next({
                 status: HttpStatus.Succeeded, data: [
@@ -41,7 +42,7 @@ export class SearchController implements ISearchController {
     }
 
     recent() {
-        return Observable.create((observer: Observer<HttpBag<Array<Asset>>>) => {
+        return Observable.create((observer: Observer<HttpBag<Array<Asset>, HttpError>>) => {
             observer.next({status: HttpStatus.Pending, data: null});
             setTimeout(() => observer.next({
                 status: HttpStatus.Succeeded, data: [

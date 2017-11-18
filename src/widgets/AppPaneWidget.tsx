@@ -8,6 +8,7 @@ import Loading from "./AppPane/Loading";
 import AppIconBag from "./AppPane/AppIconBag";
 import Failed from "./AppPane/Failed";
 import Api from "../Api";
+import {HttpError} from "../models/HttpError";
 
 interface IProps{}
 
@@ -31,7 +32,7 @@ class AppPane extends React.Component<IProps, IFragmentState> {
         this.listApps();
     }
 
-    renderFragment(appsBag: HttpBag<Array<App>>): JSX.Element {
+    renderFragment(appsBag: HttpBag<Array<App>, HttpError>): JSX.Element {
         switch (appsBag.status) {
             case HttpStatus.Pending:
                 return (<Loading/>);

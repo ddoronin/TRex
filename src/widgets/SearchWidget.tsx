@@ -5,6 +5,7 @@ import {ISearchController, Asset} from "../controllers/SearchController";
 import Api from "../Api";
 import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
+import {HttpError} from "../models/HttpError";
 
 interface IProps{
 }
@@ -37,7 +38,7 @@ class SearchWidget extends React.Component<IProps, IState> {
         }
     }
 
-    renderFragment(assetsBag: HttpBag<Array<Asset>>): JSX.Element {
+    renderFragment(assetsBag: HttpBag<Array<Asset>, HttpError>): JSX.Element {
         switch (assetsBag.status) {
             case HttpStatus.Pending:
                 return (<div>Loading...</div>);

@@ -5,10 +5,13 @@ import {IFragmentState} from "../common/IFragmentState";
 import {HttpBag} from "../models/HttpBag";
 import {Contact} from "../models/Contact";
 import {HttpStatus} from "../models/HttpStatus";
+import {Subscription} from "rxjs/Subscription";
+import {HttpError} from "../models/HttpError";
 
 interface IProps{}
 
 class ContactsWidget extends React.Component<IProps, IFragmentState> {
+    private subscription: Subscription;
     private readonly contactsController: IContactsController = Api.get<IContactsController>('IContactsController');
 
     constructor(props: IProps) {
@@ -18,17 +21,17 @@ class ContactsWidget extends React.Component<IProps, IFragmentState> {
         }
     }
 
-    listContacts() {
-        this.contactsController
+    componentDidMount() {
+        this.subscription = this.contactsController
             .listContacts()
             .subscribe(contactsBag => this.setState({fragment: this.renderFragment(contactsBag)}));
     }
 
-    componentDidMount() {
-        this.listContacts();
+    componentWillUnmount(){
+        this.subscription.unsubscribe();
     }
 
-    renderFragment(contactBag: HttpBag<Array<Contact>>): JSX.Element {
+    renderFragment(contactBag: HttpBag<Array<Contact>, HttpError>): JSX.Element {
         switch (contactBag.status) {
             case HttpStatus.Pending:
                 return <div>Loading</div>;
