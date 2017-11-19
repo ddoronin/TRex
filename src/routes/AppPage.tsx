@@ -1,21 +1,59 @@
 import * as React from 'react';
 import Api from "../Api";
 import {IAppFragmentsController} from "../controllers/AppFragmentsController";
+import {IFragmentState} from "../common/IFragmentState";
+import {HttpBag} from "../models/HttpBag";
+import {HttpError} from "../models/HttpError";
+import {HttpStatus} from "../models/HttpStatus";
 
 interface IProps{
     appId?:string
 }
 
-const appFragmentsController: IAppFragmentsController = Api.get('IAppFragmentsController');
+export default class AppPage extends React.Component<IProps, IFragmentState> {
+    private readonly appFragmentsController: IAppFragmentsController = Api.get('IAppFragmentsController');
 
-const AppPage = (props: IProps) => (
-    <article className={`app-${props.appId}`}>
-        <section>
-            {appFragmentsController.resolve(props.appId).map((fragment, index) => {
-                return (<div key={index} className="fragment">{fragment}</div>);
-            })}
-        </section>
-    </article>
-);
+    constructor(props: IProps) {
+        super(props);
 
-export default AppPage;
+        this.state = {
+            fragment: null
+        };
+    }
+
+    componentDidMount() {
+        this.appFragmentsController
+            .resolve(this.props.appId)
+            .subscribe(widgetsBag => this.setState({fragment: <div>{this.renderFragment(widgetsBag)}</div>}));
+    }
+
+    renderFragment(widgetsBag: HttpBag<Array<JSX.Element>, HttpError>): JSX.Element {
+        switch (widgetsBag.status) {
+            case HttpStatus.Pending:
+                return <div>Loading...</div>;
+
+            case HttpStatus.Succeeded:
+                return (
+                    <div>{widgetsBag.data.map(widget =>
+                        <div>{widget}</div>)}
+                    </div>
+                );
+
+            case HttpStatus.Failed:
+                return <div>Failed</div>;
+
+            default:
+                return null;
+        }
+    }
+
+    render() {
+        return (
+            <article className={`app-${this.props.appId}`}>
+                <section>
+                    {this.state.fragment}
+                </section>
+            </article>
+        );
+    }
+}

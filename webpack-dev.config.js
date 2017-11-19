@@ -118,6 +118,18 @@ module.exports = {
 			app.get('/api/apps', (req, res) => {
 				res.send(apps);
 			});
+
+			app.get('/api/fragments', (req, res) => {
+				res.send({
+					contacts: [
+						{type: 'ContactsWidget', config: {}}
+					]
+				});
+			});
+
+			app.post('/api/apps', (req, res) => {
+
+			});
 		}
 	}
 };
