@@ -9,7 +9,7 @@
     "debug": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
     "build": "./node_modules/.bin/webpack --progress --colors",
     "start": "yarn build && coffee ./start.coffee",
-    "postinstall": "echo Woohoo! Package installation completed!"
+    "postinstall": "yarn build && coffee ./start.coffee"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
