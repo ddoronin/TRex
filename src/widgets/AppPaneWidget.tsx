@@ -24,7 +24,7 @@ class AppPane extends React.Component<IProps, IFragmentState> {
 
     listApps() {
         this.appController
-            .listApps()
+            .list()
             .subscribe(appsBag => this.setState({fragment: this.renderFragment(appsBag)}));
     }
 
