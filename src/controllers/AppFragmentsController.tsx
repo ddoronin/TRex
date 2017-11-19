@@ -30,7 +30,7 @@ export class AppFragmentsController implements IAppFragmentsController {
                 .then(data => {
                     let widgets: Array<JSX.Element> = null;
                     if (data[appId]) {
-                        widgets = data.contacts.map((widget: IWidget) => renderWidget(widget.type, widget.config));
+                        widgets = data[appId].map((widget: IWidget) => renderWidget(widget.type, widget.config));
                     } else {
                         widgets = Array(<div>Not Found</div>);
                     }

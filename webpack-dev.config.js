@@ -121,8 +121,17 @@ module.exports = {
 
 			app.get('/api/fragments', (req, res) => {
 				res.send({
+					finance: [
+						{type: 'CreditCalculator', config: {
+							title: 'Calculator',
+							totalAmount: 1000000,
+							maturity: 120,
+							percentage: 0.094
+						}}
+					],
 					contacts: [
-						{type: 'ContactsWidget', config: {}}
+						{type: 'ContactsWidget', config: {title: 'Contacts Widget 1'}},
+						{type: 'ContactsWidget', config: {title: 'Contacts Widget 2'}}
 					]
 				});
 			});

@@ -8,7 +8,9 @@ import {HttpStatus} from "../models/HttpStatus";
 import {Subscription} from "rxjs/Subscription";
 import {HttpError} from "../models/HttpError";
 
-interface IProps{}
+interface IProps {
+    title?: string
+}
 
 class ContactsWidget extends React.Component<IProps, IFragmentState> {
     private subscription: Subscription;
@@ -54,7 +56,12 @@ class ContactsWidget extends React.Component<IProps, IFragmentState> {
     render(): JSX.Element {
         return (
             <article>
-                {this.state.fragment}
+                <header>
+                    <h2>{this.props.title}</h2>
+                </header>
+                <section>
+                    {this.state.fragment}
+                </section>
             </article>
         );
     }
