@@ -8,8 +8,8 @@
   "scripts": {
     "debug": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
     "build": "./node_modules/.bin/webpack --progress --colors",
-    "start": "echo woohoo!!! Start!!!",
-    "postinstall": "echo Woohoo! postinstall!!!"
+    "start": "yarn build && coffee ./start.coffee",
+    "postinstall": "yarn start"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
