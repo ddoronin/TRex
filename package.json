@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "debug": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
-    "start": "./node_modules/.bin/webpack --progress --colors"
+    "build": "./node_modules/.bin/webpack --progress --colors",
+    "start": "yarn build && coffee ./start.coffee",
+    "postinstall": "echo Woohoo! Package installation completed!"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
@@ -15,6 +17,7 @@
     "@types/react-dom": "^16.0.3",
     "@types/react-router": "^4.0.17",
     "@types/react-router-dom": "^4.2.1",
+    "coffee-script": "^1.12.7",
     "css-loader": "^0.28.7",
     "node-sass": "^4.6.1",
     "react": "^16.1.0",
@@ -25,6 +28,7 @@
     "rxjs": "^5.5.2",
     "rxjs-es": "^5.0.0-beta.12",
     "sass-loader": "^6.0.6",
+    "shelljs": "^0.7.8",
     "style-loader": "^0.19.0"
   },
   "devDependencies": {

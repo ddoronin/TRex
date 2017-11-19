@@ -113,7 +113,7 @@ module.exports = {
 		hot: true,
 		// enable HMR on the server
 
-		setup(app){
+		setup(app) {
 			const apps = require('./mocks/apps');
 			app.get('/api/apps', (req, res) => {
 				res.send(apps);
@@ -121,14 +121,15 @@ module.exports = {
 
 			app.get('/api/fragments', (req, res) => {
 				res.send({
-					finance: [
-						{type: 'CreditCalculator', config: {
+					finance: [{
+						type: 'CreditCalculator',
+						config: {
 							title: 'Calculator',
 							totalAmount: 1000000,
 							maturity: 120,
 							percentage: 0.094
-						}}
-					],
+						}
+					}],
 					contacts: [
 						{type: 'ContactsWidget', config: {title: 'Contacts Widget 1'}},
 						{type: 'ContactsWidget', config: {title: 'Contacts Widget 2'}}
