@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const package = require('./package.json');
 
 module.exports = {
@@ -76,9 +76,9 @@ module.exports = {
 		new webpack.NoEmitOnErrorsPlugin(),
 		// do not emit compiled assets that include errors
 
-		new TransferWebpackPlugin([
+		new CopyWebpackPlugin([
 			{from: 'www'},
-		], path.resolve(__dirname)),
+		]),
 
 		new webpack.LoaderOptionsPlugin({
 			options: {
