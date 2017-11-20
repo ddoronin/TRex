@@ -8,7 +8,7 @@
   "scripts": {
     "debug": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
     "build": "./node_modules/.bin/webpack --progress --colors",
-    "heroku-postbuild": "./build.sh"
+    "start": "yarn build"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
@@ -16,7 +16,6 @@
     "@types/react-dom": "^16.0.3",
     "@types/react-router": "^4.0.17",
     "@types/react-router-dom": "^4.2.1",
-    "coffee-script": "^1.12.7",
     "css-loader": "^0.28.7",
     "node-sass": "^4.6.1",
     "react": "^16.1.0",
@@ -39,5 +38,8 @@
     "typescript": "^2.6.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
+  },
+  "engines": {
+    "node": "8.5.0"
   }
 }
