@@ -8,7 +8,7 @@
   "scripts": {
     "debug": "./node_modules/.bin/webpack-dev-server --config webpack-dev.config.js --color --progress --open",
     "build": "./node_modules/.bin/webpack --progress --colors",
-    "heroku-postbuild": "yarn build && coffee ./start.coffee"
+    "heroku-postbuild": "./build.sh"
   },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
@@ -25,16 +25,16 @@
     "react-router-dom": "^4.2.2",
     "resolve-url-loader": "^2.2.0",
     "rxjs": "^5.5.2",
-    "rxjs-es": "^5.0.0-beta.12",
-    "sass-loader": "^6.0.6",
-    "shelljs": "^0.7.8",
-    "style-loader": "^0.19.0"
+    "rxjs-es": "^5.0.0-beta.12"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.3.0",
     "copy-webpack-plugin": "^4.2.1",
     "react-hot-loader": "^3.1.2",
+    "sass-loader": "^6.0.6",
+    "shelljs": "^0.7.8",
     "source-map-loader": "^0.2.3",
+    "style-loader": "^0.19.0",
     "transfer-webpack-plugin": "^0.1.4",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1",
