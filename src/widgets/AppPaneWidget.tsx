@@ -1,4 +1,4 @@
-import * as React from 'React';
+import * as React from 'react';
 import {IAppController} from "../controllers/AppController";
 import {App} from "../models/App";
 import {HttpBag} from "../models/HttpBag";

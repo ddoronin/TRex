@@ -1,4 +1,4 @@
-import * as React from 'React';
+import * as React from 'react';
 import {IFragmentState} from "../../common/IFragmentState";
 import {ICreditCalculatorController} from "./Controller";
 import {default as api, Services} from "../../Api";

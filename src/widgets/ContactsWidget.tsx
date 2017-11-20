@@ -1,4 +1,4 @@
-import * as React from 'React';
+import * as React from 'react';
 import Api from "../Api";
 import {IContactsController} from "../controllers/ContactsController";
 import {IFragmentState} from "../common/IFragmentState";

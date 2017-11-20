@@ -1,4 +1,4 @@
-import * as React from 'React';
+import * as React from 'react';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from "rxjs/Observer";
 
