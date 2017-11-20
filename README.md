@@ -1,6 +1,6 @@
 # &lt;T> Rex
 
-TypeSafe Reactive Application Management System. 
+**T**ypeSafe **R**eactive **ex**tendable Application Management System.
 
 ## Reliable! Unstoppable! Alive!
 
