@@ -17,6 +17,7 @@
     "@types/react-router": "^4.0.17",
     "@types/react-router-dom": "^4.2.1",
     "awesome-typescript-loader": "^3.3.0",
+    "coffee-script": "^1.12.7",
     "copy-webpack-plugin": "^4.2.1",
     "css-loader": "^0.28.7",
     "node-sass": "^4.6.1",
