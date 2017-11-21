@@ -14,5 +14,16 @@
     background-color: #121926;
     padding: 8px;
     box-shadow: 0 2px 10px rgba(28, 98, 185, 0.15);
+
+    .edit-pane {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+  & > .widget-list-pane {
+    background-color: rgba(97, 126, 182, 0.25);
+    padding: 8px;
+    box-shadow: 0 2px 10px rgba(28, 98, 185, 0.15);
   }
 }

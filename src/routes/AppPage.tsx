@@ -7,8 +7,8 @@ import {HttpError} from "../models/HttpError";
 import {HttpStatus} from "../models/HttpStatus";
 import {Subscription} from "rxjs/Subscription";
 
-interface IProps{
-    appId?:string
+interface IProps {
+    appId?: string
 }
 
 export default class AppPage extends React.Component<IProps, IFragmentState> {

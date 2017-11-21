@@ -1,8 +1,8 @@
 class Binder<T> {
-    private readonly type: String;
-    private readonly locator: Map<String, any>;
+    private readonly type: string;
+    private readonly locator: Map<string, any>;
 
-    constructor(type: String, locator: Map<String, any>) {
+    constructor(type: string, locator: Map<string, any>) {
         this.type = type;
         this.locator = locator;
     }
@@ -13,13 +13,17 @@ class Binder<T> {
 }
 
 export default class ServiceLocator {
-    private locator: Map<String, any> = new Map();
+    private locator: Map<string, any> = new Map();
 
-    bind<T>(type: String): Binder<T> {
+    bind<T>(type: string): Binder<T> {
         return new Binder(type, this.locator)
     }
 
-    get<T>(type: String): T {
+    get<T>(type: string): T {
         return this.locator.get(type)
+    }
+
+    list(): Array<string> {
+        return Array.from(this.locator.keys());
     }
 }
