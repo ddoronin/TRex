@@ -1,7 +1,7 @@
 import * as React from "react";
 import ServiceLocator from '../di/ServiceLocator';
-import ContactsWidget from "./ContactsWidget";
-import CreditCalculatorWidget from "./CreditCalculator/Widget";
+import ContactsWidget from "../widgets/ContactsWidget";
+import CreditCalculatorWidget from "../widgets/CreditCalculator/Widget";
 
 const factory = new ServiceLocator();
 

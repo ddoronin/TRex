@@ -7,7 +7,7 @@ import {IFragmentState} from '../common/IFragmentState';
 import Loading from "./AppPane/Loading";
 import AppIconBag from "./AppPane/AppIconBag";
 import Failed from "./AppPane/Failed";
-import Api from "../Api";
+import Api from "../api/controllerFactory";
 import {HttpError} from "../models/HttpError";
 
 interface IProps{}
@@ -50,7 +50,7 @@ class AppPane extends React.Component<IProps, IFragmentState> {
 
     render(): JSX.Element {
         return (
-            <article>
+            <article className="app-pane-widget">
                 {this.state.fragment}
             </article>
         );

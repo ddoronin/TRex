@@ -1,5 +1,5 @@
 import * as React from "react";
-import widgetsFactory, {Widgets} from "../widgets/factory";
+import widgetsFactory, {Widgets} from "../api/widgetFactory";
 import {Observable} from "rxjs/Observable";
 import {HttpArray} from "./AppController";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
@@ -32,7 +32,7 @@ export class AppFragmentsController implements IAppFragmentsController {
                     if (data[appId]) {
                         widgets = data[appId].map((widget: IWidget) => renderWidget(widget.type, widget.config));
                     } else {
-                        widgets = Array(<div>Not Found</div>);
+                        widgets = Array(<div>No widgets found for "{appId}"</div>);
                     }
                     observer.next({
                         status: HttpStatus.Succeeded,

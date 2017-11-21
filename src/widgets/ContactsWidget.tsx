@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Api from "../Api";
+import Api from "../api/controllerFactory";
 import {IContactsController} from "../controllers/ContactsController";
 import {IFragmentState} from "../common/IFragmentState";
 import {HttpBag} from "../models/HttpBag";

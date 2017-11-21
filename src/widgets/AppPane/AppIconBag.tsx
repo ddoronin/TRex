@@ -8,10 +8,10 @@ interface IProps{
 }
 
 const AppIconBag = (props: IProps):JSX.Element => (
-    <ul>
+    <ul className="app-list">
         {props.apps.map(app =>{
             return (
-                <li style={{display: 'inline-block', margin: 10, padding: 10}} key={app.name.toString()}>
+                <li className="app-list-item" key={app.name.toString()}>
                     <Link to={`/${app.name.toLowerCase()}`}><AppIcon app={app}/></Link>
                 </li>
             );

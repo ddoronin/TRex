@@ -2,7 +2,7 @@ import * as React from 'react';
 import {SearchBox} from "./Search/SearchBox";
 import {Recent} from "./Search/Recent";
 import {ISearchController, Asset} from "../controllers/SearchController";
-import Api from "../Api";
+import Api from "../api/controllerFactory";
 import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
 import {HttpError} from "../models/HttpError";

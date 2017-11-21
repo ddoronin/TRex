@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {IFragmentState} from "../../common/IFragmentState";
 import {ICreditCalculatorController} from "./Controller";
-import {default as api, Services} from "../../Api";
+import {default as api, Controllers} from "../../api/controllerFactory";
 
 interface IDefaultCalculatorConfig{
     totalAmount?: number
@@ -27,7 +27,7 @@ interface INumberEvent{
 }
 
 class CreditCalculatorWidget extends React.Component<IProps, IState> {
-    private readonly creditCalculatorController:ICreditCalculatorController = api.get(Services.CreditCalculator);
+    private readonly creditCalculatorController:ICreditCalculatorController = api.get(Controllers.CreditCalculator);
 
     constructor(props: IProps) {
         super(props);

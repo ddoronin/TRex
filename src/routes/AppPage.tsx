@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Api from "../Api";
+import Api from "../api/controllerFactory";
 import {IAppFragmentsController} from "../controllers/AppFragmentsController";
 import {IFragmentState} from "../common/IFragmentState";
 import {HttpBag} from "../models/HttpBag";
 import {HttpError} from "../models/HttpError";
 import {HttpStatus} from "../models/HttpStatus";
+import {Subscription} from "rxjs/Subscription";
 
 interface IProps{
     appId?:string
@@ -12,6 +13,7 @@ interface IProps{
 
 export default class AppPage extends React.Component<IProps, IFragmentState> {
     private readonly appFragmentsController: IAppFragmentsController = Api.get('IAppFragmentsController');
+    private subscriptions: Array<Subscription> = [];
 
     constructor(props: IProps) {
         super(props);
@@ -22,9 +24,15 @@ export default class AppPage extends React.Component<IProps, IFragmentState> {
     }
 
     componentDidMount() {
-        this.appFragmentsController
-            .resolve(this.props.appId)
-            .subscribe(widgetsBag => this.setState({fragment: <div>{this.renderFragment(widgetsBag)}</div>}));
+        this.subscriptions.push(
+            this.appFragmentsController
+                .resolve(this.props.appId)
+                .subscribe(widgetsBag => this.setState({fragment: <div>{this.renderFragment(widgetsBag)}</div>}))
+        );
+    }
+
+    componentWillUnmount() {
+        this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
     renderFragment(widgetsBag: HttpBag<Array<JSX.Element>, HttpError>): JSX.Element {
