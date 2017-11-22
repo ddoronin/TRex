@@ -22,14 +22,16 @@ class AppPane extends React.Component<IProps, IFragmentState> {
         }
     }
 
+    componentDidMount(){
+        this.listApps();
+    }
+
     listApps() {
         this.appController
             .list()
-            .subscribe(appsBag => this.setState({fragment: this.renderFragment(appsBag)}));
-    }
-
-    componentDidMount() {
-        this.listApps();
+            .subscribe(appsBag => {
+                this.setState({fragment: this.renderFragment(appsBag)});
+            });
     }
 
     renderFragment(appsBag: HttpBag<Array<App>, HttpError>): JSX.Element {

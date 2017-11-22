@@ -9,6 +9,7 @@ import Home from "./routes/Home";
 import SearchWidget from "./widgets/SearchWidget";
 import AppPage from "./routes/AppPage";
 import widgetFactory from "./api/widgetFactory";
+import WidgetListPane from "./widgets/WidgetListPane";
 
 interface IRoute<T> {
     match: {
@@ -36,7 +37,7 @@ const App = () => (
             </div>
         </header>
         <Route exact path="/edit/:appId" component={(route: IRoute<IAppParams>) =>
-            <section className="widget-list-pane">Widgets: {widgetFactory.list().join(', ')}</section>
+            <WidgetListPane/>
         }/>
         <section>
             <Route exact path="/" component={Home}/>
