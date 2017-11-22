@@ -42,8 +42,10 @@ export default class AppPage extends React.Component<IProps, IFragmentState> {
 
             case HttpStatus.Succeeded:
                 return (
-                    <div>{widgetsBag.data.map(widget =>
-                        <div>{widget}</div>)}
+                    <div>
+                        {widgetsBag.data.map(widget =>
+                            <div className="widget">{widget}</div>
+                        )}
                     </div>
                 );
 
