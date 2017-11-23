@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {IAppController} from "../controllers/AppController";
-import {App} from "../models/App";
+import {IApp} from "../models/App";
 import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
 import {IFragmentState} from '../common/IFragmentState';
@@ -34,7 +34,7 @@ class AppPane extends React.Component<IProps, IFragmentState> {
             });
     }
 
-    renderFragment(appsBag: HttpBag<Array<App>, HttpError>): JSX.Element {
+    renderFragment(appsBag: HttpBag<Array<IApp>, HttpError>): JSX.Element {
         switch (appsBag.status) {
             case HttpStatus.Pending:
                 return (<Loading/>);

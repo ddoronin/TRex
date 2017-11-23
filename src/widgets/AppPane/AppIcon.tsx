@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {App} from "../../models/App";
+import {IApp} from "../../models/App";
 
 interface IProps {
-    app: App
+    app: IApp
 }
 
 export const AppIcon = (props: IProps): JSX.Element => (
-    <article>
+    <article className="app-icon">
         <header>
             <h4 style={{textAlign: 'center', margin: 5}}>{props.app.name}</h4>
         </header>

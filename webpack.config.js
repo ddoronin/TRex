@@ -4,16 +4,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const package = require('./package.json');
 
 module.exports = {
-	entry: [
-		'./src/index.tsx'
+	entry: {
+		[package.name]: './src/index.tsx',
+		[`${package.name}-admin`]: './src/adminIndex.tsx'
 		// the entry point of our app
-	],
+	},
 
 	output: {
 		path: path.resolve(__dirname, 'public'),
 		// the output bundle
 
-		filename: `${package.name}.js`,
+		filename: '[name].js',
 
 		publicPath: '/'
 		// necessary for HMR to know where to load the hot update chunks
