@@ -26,7 +26,11 @@ const App = () => (
 <Router>
     <article className="application">
         <header>
-            <SearchWidget/>
+            <h1>
+                <Link to="/">
+                    <i className="fa fa-paw" aria-hidden="true"/>
+                </Link>
+            </h1>
             <div className="edit-pane">
                 <Route exact path="/:appId" component={(route: IRoute<IAppParams>) =>
                     <Link to={`/edit/${route.match.params.appId}`}>Edit</Link>}
