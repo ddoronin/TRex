@@ -9,6 +9,7 @@ import Home from "./routes/Home";
 import AppPage from "./routes/AppPage";
 import WidgetListPane from "./widgets/WidgetListPane";
 import {IAppParams, IRoute} from "./common/routeUtils";
+import Breadcrumbs from "./widgets/Breadcrumbs";
 
 const App = () => (
     <Router>
@@ -18,6 +19,9 @@ const App = () => (
                     <Link to="/">
                         <i className="fa fa-paw" aria-hidden="true"/>
                     </Link>
+                    <Route exact path="(/edit)?/:appId" component={(route: IRoute<IAppParams>) =>
+                        <Breadcrumbs appId={route.match.params.appId}/>
+                    }/>
                 </h1>
                 <div className="edit-pane">
                     <Route exact path="/:appId" component={(route: IRoute<IAppParams>) =>

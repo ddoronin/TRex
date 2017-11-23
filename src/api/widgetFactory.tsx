@@ -5,6 +5,8 @@ import CreditCalculatorWidget from "../widgets/CreditCalculator/Widget";
 
 const factory = new ServiceLocator();
 
+// TODO: this part should be generated on a server side!
+
 export enum Widgets {
     Contacts = 'ContactsWidget',
     CreditCalculator = 'CreditCalculator'

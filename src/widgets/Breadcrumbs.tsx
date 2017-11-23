@@ -5,14 +5,15 @@ import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
 import {IFragmentState} from '../common/IFragmentState';
 import Loading from "./AppPane/Loading";
-import AppIconBag from "./AppPane/AppIconBag";
 import Failed from "./AppPane/Failed";
 import Api from "../api/controllerFactory";
 import {HttpError} from "../models/HttpError";
 
-interface IProps{}
+interface IProps {
+    appId: string;
+}
 
-class AppPane extends React.Component<IProps, IFragmentState> {
+class Breadcrumbs extends React.Component<IProps, IFragmentState> {
     private readonly appController: IAppController = Api.get<IAppController>('IAppController');
 
     constructor(props: IProps) {
@@ -23,27 +24,31 @@ class AppPane extends React.Component<IProps, IFragmentState> {
     }
 
     componentDidMount() {
-        this.listApps();
+        this.getApp();
     }
 
-    listApps() {
+    getApp() {
+        const {
+            appId
+        } = this.props;
+
         this.appController
-            .list()
-            .subscribe(appsBag => {
-                this.setState({fragment: this.renderFragment(appsBag)});
+            .get(appId)
+            .subscribe(appBag => {
+                this.setState({fragment: this.renderFragment(appBag)});
             });
     }
 
-    renderFragment(appsBag: HttpBag<Array<IApp>, HttpError>): JSX.Element {
-        switch (appsBag.status) {
+    renderFragment(appBag: HttpBag<IApp, HttpError>): JSX.Element {
+        switch (appBag.status) {
             case HttpStatus.Pending:
                 return (<Loading/>);
 
             case HttpStatus.Succeeded:
-                return <AppIconBag apps={appsBag.data}/>;
+                return (<span>{appBag.data.name}</span>);
 
             case HttpStatus.Failed:
-                return <Failed retry={this.listApps.bind(this)}/>
+                return <Failed retry={this.getApp.bind(this)}/>
 
             default:
                 return null;
@@ -52,11 +57,11 @@ class AppPane extends React.Component<IProps, IFragmentState> {
 
     render(): JSX.Element {
         return (
-            <article className="app-pane-widget">
+            <article className="breadcrumbs">
                 {this.state.fragment}
             </article>
         );
     }
 }
 
-export default AppPane;
+export default Breadcrumbs;

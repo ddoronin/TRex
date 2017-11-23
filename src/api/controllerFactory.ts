@@ -8,13 +8,15 @@ import {CreditCalculatorController, ICreditCalculatorController} from "../widget
 
 const api = new ServiceLocator();
 
+// TODO: This part can be generated on a server side!
+
 export enum Controllers {
     App = 'IAppController',
     Contacts = 'IContactsController',
     Search = 'ISearchController',
     AppFragments = 'IAppFragmentsController',
     CreditCalculator = 'ICreditCalculatorController'
-};
+}
 
 (function(api: ServiceLocator) {
     api.bind<IAppController>(Controllers.App).to(new AppController());
