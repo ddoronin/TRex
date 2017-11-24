@@ -5,46 +5,38 @@ import {HttpBag} from "../models/HttpBag";
 import {HttpStatus} from "../models/HttpStatus";
 import {IFragmentState} from '../common/IFragmentState';
 import Loading from "./AppPane/Loading";
-import Failed from "./AppPane/Failed";
 import Api from "../api/controllerFactory";
 import {HttpError} from "../models/HttpError";
+import ReXComponent from "../common/ReXComponent";
+import {Subscription} from "rxjs/Subscription";
 
 interface IProps {
     appId: string;
 }
 
-class Breadcrumbs extends React.Component<IProps, IFragmentState> {
+class Breadcrumbs extends ReXComponent<IProps, IFragmentState> {
     private readonly appController: IAppController = Api.get<IAppController>('IAppController');
+    private subscription: Subscription;
 
     constructor(props: IProps) {
         super(props);
+
         this.state = {
             fragment: null
-        }
+        };
     }
 
     componentDidMount() {
-        const {
-            appId
-        } = this.props;
-        this.getApp(appId);
-    }
-
-    componentWillReceiveProps(newProps: IProps) {
-        const {
-            appId
-        } = newProps;
-        if(appId !== this.props.appId){
-            this.getApp(appId);
-        }
-    }
-
-    getApp(appId: string) {
-        this.appController
-            .get(appId)
-            .subscribe(appBag => {
-                this.setState({fragment: this.renderFragment(appBag)});
+        this.subscription = this.props$
+            .mergeMap(props => this.appController.get(props.appId))
+            .map(appBag => this.renderFragment(appBag))
+            .subscribe(jsxFragment => {
+                this.setState({fragment: jsxFragment});
             });
+    }
+
+    componentWillUnmount(){
+        this.subscription.unsubscribe();
     }
 
     renderFragment(appBag: HttpBag<IApp, HttpError>): JSX.Element {
@@ -56,7 +48,7 @@ class Breadcrumbs extends React.Component<IProps, IFragmentState> {
                 return (<span>{appBag.data.name}</span>);
 
             case HttpStatus.Failed:
-                return <Failed retry={this.getApp.bind(this)(this.props.appId)}/>
+                return <div>Failed!</div>
 
             default:
                 return null;

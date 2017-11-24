@@ -7,7 +7,6 @@ import {HttpError} from "../models/HttpError";
 import {HttpStatus} from "../models/HttpStatus";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Subject} from "rxjs/Subject";
-import 'rxjs/add/operator/map';
 
 export type HttpArray<T> = HttpBag<Array<T>, HttpError>
 export type HttpItem<T> = HttpBag<T, HttpError>
