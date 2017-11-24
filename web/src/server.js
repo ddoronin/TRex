@@ -39,20 +39,6 @@ app.get('/api/apps', (req, res) => {
 	res.send(apps);
 });
 
-app.get('/api/fragments', (req, res) => {
-	res.send({
-		finance: [{
-			type: 'CreditCalculator',
-			config: {
-				title: 'Calculator',
-				totalAmount: 1000000,
-				maturity: 120,
-				percentage: 0.094
-			}
-		}],
-		contacts: [
-			{type: 'ContactsWidget', config: {title: 'Contacts Widget 1'}},
-			{type: 'ContactsWidget', config: {title: 'Contacts Widget 2'}}
-		]
-	});
+app.get('/api/fragments/:appId', (req, res) => {
+	res.send(require(`../../mocks/${req.params.appId}.js`));
 });

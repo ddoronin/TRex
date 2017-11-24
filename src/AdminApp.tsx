@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Link,
     Route
 } from "react-router-dom";
@@ -16,7 +16,7 @@ const App = () => (
         <article className="application">
             <header>
                 <h1>
-                    <Link to="/">
+                    <Link className="home" to="/">
                         <i className="fa fa-paw" aria-hidden="true"/>
                     </Link>
                     <Route exact path="(/edit)?/:appId" component={(route: IRoute<IAppParams>) =>
