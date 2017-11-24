@@ -7,6 +7,7 @@ import {Contact} from "../models/Contact";
 import {HttpStatus} from "../models/HttpStatus";
 import {Subscription} from "rxjs/Subscription";
 import {HttpError} from "../models/HttpError";
+import {Link} from "react-router-dom";
 
 interface IProps {
     title?: string
@@ -40,8 +41,9 @@ class ContactsWidget extends React.Component<IProps, IFragmentState> {
 
             case HttpStatus.Succeeded:
                 return (
-                    <div>{contactBag.data.map(contact =>
-                        <div>{contact.firstName} - {contact.lastName}</div>)}
+                    <div>
+                        {contactBag.data.map((contact, index) =>
+                        <div key={index}>{contact.firstName} - {contact.lastName}</div>)}
                     </div>
                 );
 
@@ -57,7 +59,9 @@ class ContactsWidget extends React.Component<IProps, IFragmentState> {
         return (
             <article>
                 <header>
-                    <h2>{this.props.title}</h2>
+                    <Link className="home" to="/contacts">
+                        <h2>{this.props.title}</h2>
+                    </Link>
                 </header>
                 <section>
                     {this.state.fragment}

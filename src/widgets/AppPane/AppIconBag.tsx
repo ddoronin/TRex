@@ -12,7 +12,7 @@ const AppIconBag = (props: IProps):JSX.Element => (
         {props.apps.map(app =>{
             return (
                 <li className="app-list-item" key={app.name.toString()}>
-                    <Link to={`/${app.name.toLowerCase()}`}><AppIcon app={app}/></Link>
+                    <Link to={`/${app.name.toLowerCase()}`} key={app.id}><AppIcon app={app}/></Link>
                 </li>
             );
         })}

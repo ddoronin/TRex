@@ -24,14 +24,22 @@ class Breadcrumbs extends React.Component<IProps, IFragmentState> {
     }
 
     componentDidMount() {
-        this.getApp();
-    }
-
-    getApp() {
         const {
             appId
         } = this.props;
+        this.getApp(appId);
+    }
 
+    componentWillReceiveProps(newProps: IProps) {
+        const {
+            appId
+        } = newProps;
+        if(appId !== this.props.appId){
+            this.getApp(appId);
+        }
+    }
+
+    getApp(appId: string) {
         this.appController
             .get(appId)
             .subscribe(appBag => {
@@ -48,7 +56,7 @@ class Breadcrumbs extends React.Component<IProps, IFragmentState> {
                 return (<span>{appBag.data.name}</span>);
 
             case HttpStatus.Failed:
-                return <Failed retry={this.getApp.bind(this)}/>
+                return <Failed retry={this.getApp.bind(this)(this.props.appId)}/>
 
             default:
                 return null;

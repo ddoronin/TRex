@@ -25,10 +25,10 @@ type AppId = string;
 export class AppFragmentsController implements IAppFragmentsController {
     private readonly appFragments$ = new Map<AppId, BehaviorSubject<HttpArray<JSX.Element>>>();
 
-    renderWidgetSafe(widget: IWidget):JSX.Element {
+    renderWidgetSafe(widget: IWidget, index: number):JSX.Element {
         let jsx = null;
         try {
-            jsx = renderWidget(widget.type, widget.config);
+            jsx = renderWidget(widget.type, {...widget.config, key: `${widget.type}-${index}`});
         } catch (error) {
             console.log(widget, error);
         }
@@ -42,7 +42,7 @@ export class AppFragmentsController implements IAppFragmentsController {
             .then(data => {
                 let widgets: Array<JSX.Element> = null;
                 if (!_.isEmpty(data)) {
-                    widgets = data.map((widget: IWidget) => this.renderWidgetSafe(widget));
+                    widgets = data.map((widget: IWidget, index: number) => this.renderWidgetSafe(widget, index));
                 } else {
                     widgets = Array(<div>No widgets found for "{appId}"</div>);
                 }

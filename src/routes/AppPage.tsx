@@ -23,6 +23,20 @@ export default class AppPage extends React.Component<IProps, IFragmentState> {
         };
     }
 
+    componentWillReceiveProps(newProps: IProps) {
+        const {
+            appId
+        } = this.props;
+
+        if(appId !== newProps.appId){
+            this.subscriptions.push(
+                this.appFragmentsController
+                    .resolve(newProps.appId)
+                    .subscribe(widgetsBag => this.setState({fragment: <div>{this.renderFragment(widgetsBag)}</div>}))
+            );
+        }
+    }
+
     componentDidMount() {
         this.subscriptions.push(
             this.appFragmentsController
@@ -38,19 +52,19 @@ export default class AppPage extends React.Component<IProps, IFragmentState> {
     renderFragment(widgetsBag: HttpBag<Array<JSX.Element>, HttpError>): JSX.Element {
         switch (widgetsBag.status) {
             case HttpStatus.Pending:
-                return <div>Loading...</div>;
+                return <div key={widgetsBag.status}>Loading...</div>;
 
             case HttpStatus.Succeeded:
                 return (
-                    <div>
-                        {widgetsBag.data.map(widget =>
-                            <div className="widget">{widget}</div>
+                    <div key={widgetsBag.status}>
+                        {widgetsBag.data.map((widget, index) =>
+                            <div key={`${widget.type}-${index}`} className="widget">{widget}</div>
                         )}
                     </div>
                 );
 
             case HttpStatus.Failed:
-                return <div>Failed</div>;
+                return <div key={widgetsBag.status}>Failed</div>;
 
             default:
                 return null;
