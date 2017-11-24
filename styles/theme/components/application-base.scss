@@ -1,0 +1,46 @@
+.application {
+  & > header {
+    background-color: #121926;
+    padding: 8px;
+    box-shadow: 0 2px 10px rgba(28, 98, 185, 0.15);
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      font-size: 2em;
+      font-weight: 100;
+      a.home {
+        color: black;
+        text-shadow: 0 0 2px #2cd1fd;
+
+        &:hover{
+          color: black;
+          text-shadow: 0 0 5px #2cd1fd;
+        }
+      }
+    }
+
+    .edit-pane {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  & > .widget-list-pane {
+    background-color: rgba(97, 126, 182, 0.25);
+    padding: 8px;
+    box-shadow: 0 2px 10px rgba(28, 98, 185, 0.15);
+  }
+
+  .edit-mode {
+    .widget {
+      background-color: rgba(255, 255, 255, 0.15);
+      margin: 10px;
+      padding: 8px;
+      border: 1px white;
+      box-shadow: 0 0 2px white;
+    }
+  }
+}
