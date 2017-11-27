@@ -1,22 +1,18 @@
 import * as React from 'react';
 import {IAppController} from "../controllers/AppController";
 import {IApp} from "../models/App";
-import {HttpBag} from "../models/HttpBag";
-import {HttpStatus} from "../models/HttpStatus";
 import {IFragmentState} from '../common/IFragmentState';
 import Loading from "./AppPane/Loading";
 import Api from "../api/controllerFactory";
 import {HttpError} from "../models/HttpError";
-import ReXComponent from "../common/ReXComponent";
-import {Subscription} from "rxjs/Subscription";
+import ReXHttpComponent from "../common/ReXHttpComponent";
 
 interface IProps {
     appId: string;
 }
 
-class Breadcrumbs extends ReXComponent<IProps, IFragmentState> {
+class Breadcrumbs extends ReXHttpComponent<IProps, IFragmentState, IApp> {
     private readonly appController: IAppController = Api.get<IAppController>('IAppController');
-    private subscription: Subscription;
 
     constructor(props: IProps) {
         super(props);
@@ -26,33 +22,20 @@ class Breadcrumbs extends ReXComponent<IProps, IFragmentState> {
         };
     }
 
-    componentDidMount() {
-        this.subscription = this.props$
-            .mergeMap(props => this.appController.get(props.appId))
-            .map(appBag => this.renderFragment(appBag))
-            .subscribe(jsxFragment => {
-                this.setState({fragment: jsxFragment});
-            });
+    sourceData(props: IProps) {
+        return this.appController.get(props.appId);
     }
 
-    componentWillUnmount(){
-        this.subscription.unsubscribe();
+    protected renderPending(): JSX.Element {
+        return (<Loading/>);
     }
 
-    renderFragment(appBag: HttpBag<IApp, HttpError>): JSX.Element {
-        switch (appBag.status) {
-            case HttpStatus.Pending:
-                return (<Loading/>);
+    protected renderSucceeded(app: IApp): JSX.Element {
+        return (<span>{app.name}</span>);
+    }
 
-            case HttpStatus.Succeeded:
-                return (<span>{appBag.data.name}</span>);
-
-            case HttpStatus.Failed:
-                return <div>Failed!</div>
-
-            default:
-                return null;
-        }
+    protected renderFailed(error: HttpError): JSX.Element {
+        return <div>Failed!</div>
     }
 
     render(): JSX.Element {
