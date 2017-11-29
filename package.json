@@ -48,6 +48,6 @@
     "webpack-dev-server": "^2.9.4"
   },
   "engines": {
-    "node": "8.5.0"
+    "node": "^8.5.0"
   }
 }

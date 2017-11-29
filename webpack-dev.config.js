@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const package = require('./package.json');
 const HOST_NAME = 'localhost';
-const PORT_NUMBER = 3000;
+const PORT_NUMBER = 3001;
 
 module.exports = {
 	entry: [
@@ -26,7 +26,7 @@ module.exports = {
 		extensions: [".ts", ".tsx", ".js", ".json"]
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'public'),
 		// the output bundle
 
 		filename: `${package.name}.js`,
@@ -99,7 +99,7 @@ module.exports = {
 		})
 	],
 	devServer: {
-		contentBase: 'src/www',
+		contentBase: 'www',
 		// relative directory for base of s
 		// erver
 
@@ -113,7 +113,7 @@ module.exports = {
 		hot: true,
 		// enable HMR on the server
 
-		setup(app) {
+		before(app) {
 			const apps = require('./mocks/apps');
 			app.get('/api/apps', (req, res) => {
 				res.send(apps);
@@ -125,6 +125,10 @@ module.exports = {
 
 			app.post('/api/apps', (req, res) => {
 
+			});
+
+			app.get('/api/blogs', (req, res) => {
+				res.send(require('./mocks/api.blogs'));
 			});
 		}
 	}

@@ -5,6 +5,7 @@ import {ContactsController, IContactsController} from "../controllers/ContactsCo
 import {ISearchController, SearchController} from "../controllers/SearchController";
 import {AppFragmentsController, IAppFragmentsController} from "../controllers/AppFragmentsController";
 import {CreditCalculatorController, ICreditCalculatorController} from "../widgets/CreditCalculator/Controller";
+import { IWeblogController, WeblogController } from '../controllers/WeblogController';
 
 const api = new ServiceLocator();
 
@@ -15,8 +16,10 @@ export enum Controllers {
     Contacts = 'IContactsController',
     Search = 'ISearchController',
     AppFragments = 'IAppFragmentsController',
-    CreditCalculator = 'ICreditCalculatorController'
+    CreditCalculator = 'ICreditCalculatorController',
+    Weblogs = 'IWeblogController'
 }
+
 
 (function(api: ServiceLocator) {
     api.bind<IAppController>(Controllers.App).to(new AppController());
@@ -24,6 +27,7 @@ export enum Controllers {
     api.bind<ISearchController>(Controllers.Search).to(new SearchController());
     api.bind<IAppFragmentsController>(Controllers.AppFragments).to(new AppFragmentsController());
     api.bind<ICreditCalculatorController>(Controllers.CreditCalculator).to(new CreditCalculatorController());
+    api.bind<IWeblogController>(Controllers.Weblogs).to(new WeblogController());
 })(api);
 
 export default api;

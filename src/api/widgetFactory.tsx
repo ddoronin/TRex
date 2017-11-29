@@ -6,6 +6,7 @@ import AppPane from "../widgets/AppPaneWidget";
 import Breadcrumbs from "../widgets/Breadcrumbs";
 import SearchWidget from "../widgets/SearchWidget";
 import WidgetListPane from "../widgets/WidgetListPane";
+import WeblogListWidget from "../widgets/weblogs/WeblogListWidget";
 
 const factory = new ServiceLocator();
 
@@ -17,7 +18,8 @@ export enum Widgets {
     AppPane = 'AppPane',
     BreadCrumbs = 'Breadcrumbs',
     Search = 'Search',
-    Widgets = 'WidgetPane'
+    Widgets = 'WidgetPane',
+    Weblogs = 'Weblogs'
 }
 
 (function(api: ServiceLocator) {
@@ -27,6 +29,7 @@ export enum Widgets {
     api.bind<JSX.Element>(Widgets.BreadCrumbs).to((props?: any) => <Breadcrumbs {...props}/>);
     api.bind<JSX.Element>(Widgets.Search).to((props?: any) => <SearchWidget {...props}/>);
     api.bind<JSX.Element>(Widgets.Widgets).to((props?: any) => <WidgetListPane {...props}/>);
+    api.bind<JSX.Element>(Widgets.Weblogs).to((props?: any) => <WeblogListWidget {...props}/>)
 })(factory);
 
 export default factory;
