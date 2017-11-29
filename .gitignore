@@ -58,3 +58,7 @@ typings/
 .env
 
 public
+
+#IntelliJ IDEA
+.idea
+*.iml
